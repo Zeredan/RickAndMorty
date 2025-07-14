@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -16,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,6 +25,7 @@ import androidx.navigation.compose.rememberNavController
 import com.test.language.ui.LanguageFeatureRoot
 import com.test.main.domain.MainViewModel
 import com.test.main.ui.MainFeatureRoot
+import com.test.rickandmortyapp.R
 import com.test.settings.domain.SettingsViewModel
 import com.test.settings.ui.SettingsFeatureRoot
 import com.test.splash.ui.SplashFeatureRoot
@@ -51,7 +54,8 @@ fun MainNavigationRoot(
     val isDarkMode by settingsViewModel.darkModeStateFlow.collectAsState()
     NavHost(
         modifier = modifier
-            .fillMaxSize(),
+            .fillMaxSize()
+            .background(colorResource(com.test.feature.R.color.bg_primary)),
         navController = navController,
         startDestination = ScreenState.SPLASH,
         enterTransition = {

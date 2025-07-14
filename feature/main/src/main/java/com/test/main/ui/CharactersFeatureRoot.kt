@@ -26,6 +26,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -35,6 +37,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
+import coil3.compose.rememberAsyncImagePainter
+import coil3.request.ImageRequest
+import com.test.feature.ui.RunningText
 import com.test.main.R
 import com.test.main.domain.MainViewModel
 import com.test.main.domain.filters.Status
@@ -100,18 +105,18 @@ fun CharactersFeatureRoot(
                 onValueChange = {
                     vm.updateCharacterSearchFilter(it)
                 },
-                placeholder = {
+                label = {
                     Text(
                         text = stringResource(com.test.feature.R.string.search_characters),
                         color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontSize = 22.sp,
+                        fontSize = 16.sp,
                         fontWeight = FontWeight.W600,
                         fontFamily = jostFontFamily
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = colorResource(com.test.feature.R.color.gray),
-                    focusedContainerColor = colorResource(com.test.feature.R.color.gray),
+                    unfocusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
+                    focusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
                     unfocusedTextColor = colorResource(com.test.feature.R.color.dark_blue),
                     focusedTextColor = colorResource(com.test.feature.R.color.dark_blue)
                 )
@@ -137,12 +142,13 @@ fun CharactersFeatureRoot(
                                     modifier = Modifier
                                         .weight(1f)
                                         .aspectRatio(0.8f)
-                                        .clip(RoundedCornerShape(12.dp)),
+                                        .clip(RoundedCornerShape(12.dp))
+                                        .background(colorResource(com.test.feature.R.color.gray)),
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
                                     Box(
                                         modifier = Modifier
-                                            .weight(3f) //+2f
+                                            .weight(4f) //+2f
                                             .fillMaxWidth(),
                                         contentAlignment = Alignment.Center
                                     ) {
@@ -150,12 +156,14 @@ fun CharactersFeatureRoot(
                                             modifier = Modifier
                                                 .fillMaxSize(),
                                             model = character.image,
-                                            contentDescription = character.name,
+                                            contentScale = ContentScale.Crop,
+                                            contentDescription = character.name
                                         )
                                         Row(
                                             modifier = Modifier
                                                 .align(Alignment.BottomEnd)
                                                 .clip(RoundedCornerShape(10.dp, 0.dp, 0.dp, 0.dp))
+                                                .background(colorResource(com.test.feature.R.color.black1))
                                                 .padding(4.dp),
                                             horizontalArrangement = Arrangement.spacedBy(5.dp),
                                             verticalAlignment = Alignment.CenterVertically
@@ -163,13 +171,13 @@ fun CharactersFeatureRoot(
                                             Box(
                                                 modifier = Modifier
                                                     .clip(CircleShape)
-                                                    .size(5.dp)
+                                                    .size(7.dp)
                                                     .background(
                                                         colorResource(
-                                                            when(character.status) {
+                                                            when (character.status) {
                                                                 Status.ALIVE -> com.test.feature.R.color.green
                                                                 Status.DEAD -> com.test.feature.R.color.red
-                                                                else -> com.test.feature.R.color.gray
+                                                                else -> com.test.feature.R.color.purple
                                                             }
                                                         )
                                                     )
@@ -182,8 +190,8 @@ fun CharactersFeatureRoot(
                                                         else -> com.test.feature.R.string.unknown
                                                     }
                                                 ),
-                                                color = colorResource(com.test.feature.R.color.dark_blue),
-                                                fontSize = 22.sp,
+                                                color = colorResource(com.test.feature.R.color.main_blue),
+                                                fontSize = 16.sp,
                                                 fontWeight = FontWeight.W600,
                                                 fontFamily = jostFontFamily
                                             )
@@ -193,20 +201,20 @@ fun CharactersFeatureRoot(
                                         modifier = Modifier
                                             .weight(2f)
                                             .fillMaxWidth()
+                                            .background(colorResource(com.test.feature.R.color.black))
                                             .padding(16.dp),
                                         horizontalAlignment = Alignment.CenterHorizontally
                                     ) {
-                                        Text(
+                                        RunningText(
+                                            modifier = Modifier
+                                                .fillMaxWidth(),
                                             text = character.name,
-                                            color = colorResource(com.test.feature.R.color.dark_blue),
-                                            fontSize = 22.sp,
-                                            fontWeight = FontWeight.W600,
-                                            fontFamily = jostFontFamily
+                                            textColor = colorResource(com.test.feature.R.color.main_blue)
                                         )
                                         Text(
                                             text = "${character.gender} | ${character.species}",
-                                            color = colorResource(com.test.feature.R.color.gray),
-                                            fontSize = 16.sp,
+                                            color = colorResource(com.test.feature.R.color.purple),
+                                            fontSize = 14.sp,
                                             fontWeight = FontWeight.W500,
                                             fontFamily = jostFontFamily
                                         )
@@ -218,15 +226,18 @@ fun CharactersFeatureRoot(
                         }
                     }
                 }
+                item {
+                    Spacer(Modifier.height(36.dp))
+                }
             }
-            Spacer(Modifier.height(36.dp))
         }
         Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
+                .padding(36.dp)
                 .clip(CircleShape)
-                .size(40.dp)
-                .background(colorResource(com.test.feature.R.color.gray))
+                .size(80.dp)
+                .background(colorResource(com.test.feature.R.color.purple))
                 .clickable {
                     onFilterClicked()
                 },

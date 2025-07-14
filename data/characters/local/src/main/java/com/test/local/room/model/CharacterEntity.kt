@@ -2,12 +2,14 @@ package com.test.local.room.model
 
 import android.webkit.WebStorage
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.test.characters.model.Character
 import com.test.characters.model.Location
 import com.test.characters.model.Origin
 
 @Entity
 data class CharacterEntity(
+    @PrimaryKey
     val id: Int,
     val name: String,
     val status: String,

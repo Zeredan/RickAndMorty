@@ -2,6 +2,7 @@
 <resources>
     <color name="dark_blue">#0D2266</color>
     <color name="main_blue">#008CFF</color>
+    <color name="purple">#A0ACDF</color>
     <color name="blue_secondary">#A3CCFF</color>
     <color name="bg_primary">#EFF6FF</color>
     <color name="bg_secondary">#C9E1FF</color>
@@ -12,4 +13,6 @@
     <color name="text_inactive">#E5E5E5</color>
     <color name="green">#4CAF50</color>
     <color name="red">#F44336</color>
+    <color name="black">#503050</color>
+    <color name="black1">#300030</color>
 </resources>

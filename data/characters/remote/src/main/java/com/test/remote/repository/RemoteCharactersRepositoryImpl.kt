@@ -10,7 +10,7 @@ class RemoteCharactersRepositoryImpl @Inject constructor(
     private val apiService: RetrofitApiService
 ) : RemoteCharactersRepository {
     override suspend fun getCharacters(): List<Character> {
-        return apiService.getCharacters().map { it.toCharacter() }
+        return apiService.getRickAndMortyResponse().results.map { it.toCharacter() }
     }
 
     override suspend fun getCharacterInfo(characterId: Int): Character {

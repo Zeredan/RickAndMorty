@@ -44,6 +44,7 @@ class LanguageViewModel @Inject constructor(
             }
             else {
                 _showOkayMark.value = false
+                _preSelectedLanguageStateFlow.value = lang
             }
         }
     }

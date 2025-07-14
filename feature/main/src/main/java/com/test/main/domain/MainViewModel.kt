@@ -7,12 +7,15 @@ import com.test.local.repository.LocalCharactersRepository
 import com.test.main.domain.filters.CharacterFilter
 import com.test.remote.repository.RemoteCharactersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import javax.inject.Inject
 
@@ -53,12 +56,18 @@ class MainViewModel @Inject constructor(
 
     fun loadData() {
         viewModelScope.launch {
-            _isLoading.value = true
-            withTimeoutOrNull(5000) {
-                localCharactersRepository.updateCharacters(remoteCharactersRepository.getCharacters())
+            try {
+                _isLoading.value = true
+                withTimeoutOrNull(5000) {
+                    withContext(Dispatchers.IO) {
+                        localCharactersRepository.updateCharacters(remoteCharactersRepository.getCharacters())
+                    }
+                }
+                delay(100)
+                _isLoading.value = false
+            } catch (e: Exception) {
+                _isLoading.value = false
             }
-            delay(100)
-            _isLoading.value = false
         }
     }
 

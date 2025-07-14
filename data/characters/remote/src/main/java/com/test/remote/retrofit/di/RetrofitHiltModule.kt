@@ -30,7 +30,7 @@ class RetrofitHiltModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://rickandmortyapi.com/api")  // Don't forget to add base URL!
+            .baseUrl("https://rickandmortyapi.com/api/")  // Don't forget to add base URL!
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
