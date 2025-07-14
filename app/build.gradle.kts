@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":data:settings"))
     implementation(project(":feature"))
     implementation(project(":feature:character"))
     implementation(project(":feature:language"))

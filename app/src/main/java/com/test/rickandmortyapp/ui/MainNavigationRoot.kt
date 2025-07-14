@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -25,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.test.character.ui.CharacterFeatureRoot
+import com.test.feature.ui.UiColorTheme
 import com.test.language.ui.LanguageFeatureRoot
 import com.test.main.domain.MainViewModel
 import com.test.main.ui.MainFeatureRoot
@@ -55,6 +57,8 @@ fun MainNavigationRoot(
     val activity = LocalContext.current as ComponentActivity
 
     val isDarkMode by settingsViewModel.darkModeStateFlow.collectAsState()
+    activity.window.navigationBarColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary).toArgb()
+    activity.window.statusBarColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary).toArgb()
     NavHost(
         modifier = modifier
             .fillMaxSize()
