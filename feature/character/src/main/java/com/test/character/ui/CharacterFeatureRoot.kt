@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,9 +14,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -24,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -39,7 +47,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.test.character.R
 import com.test.character.domain.CharacterViewModel
+import kotlinx.coroutines.flow.first
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CharacterFeatureRoot(
     modifier: Modifier = Modifier,
@@ -66,152 +76,145 @@ fun CharacterFeatureRoot(
 
     val character by vm.character.collectAsState()
     val isLoading by vm.isLoading.collectAsState()
-    Column(
-        modifier = modifier
+    Box(
+        modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(com.test.feature.R.color.bg_primary))
-            .padding(top = 8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(48.dp)
-                .padding(horizontal = 11.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                modifier = modifier
-                    .padding(end = 7.dp)
-                    .clip(RoundedCornerShape(5.dp))
-                    .clickable(
-                        onClick = { onBack() },
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() }
-                    )
-                    .padding(5.dp),
-                painter = painterResource(com.test.feature.R.drawable.back_arrow),
-                contentScale = ContentScale.FillBounds,
-                contentDescription = null
-            )
-            Text(
-                text = character?.name ?: stringResource(com.test.feature.R.string.loading),
-                fontSize = 22.sp,
-                color = colorResource(com.test.feature.R.color.dark_blue),
-                fontWeight = FontWeight.W600,
-                fontFamily = jostFontFamily
-            )
-            Spacer(Modifier.weight(1f))
+    ) {
+        val pullState = rememberPullToRefreshState(50.dp)
+        LaunchedEffect(pullState.isRefreshing) {
+            println(pullState)
+            if (pullState.isRefreshing) {
+                vm.loadData(id)
+                vm.isLoading.first{ !it }
+                pullState.endRefresh()
+            }
         }
-        val ch = character
-        if (!isLoading && ch != null) {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .background(colorResource(com.test.feature.R.color.bg_primary))
+                .nestedScroll(pullState.nestedScrollConnection)
+                .verticalScroll(rememberScrollState())
+                .padding(top = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        )
+        {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp),
+                    .height(48.dp)
+                    .padding(horizontal = 11.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = "Gender: ",
-                    fontSize = 18.sp,
-                    color = colorResource(com.test.feature.R.color.dark_blue),
-                    fontWeight = FontWeight.W500,
-                    fontFamily = jostFontFamily
+                Image(
+                    modifier = modifier
+                        .padding(end = 7.dp)
+                        .clip(RoundedCornerShape(5.dp))
+                        .clickable(
+                            onClick = { onBack() },
+                            indication = null,
+                            interactionSource = remember { MutableInteractionSource() }
+                        )
+                        .padding(5.dp),
+                    painter = painterResource(com.test.feature.R.drawable.back_arrow),
+                    contentScale = ContentScale.FillBounds,
+                    contentDescription = null
                 )
                 Text(
-                    text = ch.gender ?: "-",
-                    fontSize = 18.sp,
+                    text = character?.name ?: stringResource(com.test.feature.R.string.loading),
+                    fontSize = 22.sp,
                     color = colorResource(com.test.feature.R.color.dark_blue),
                     fontWeight = FontWeight.W600,
                     fontFamily = jostFontFamily
                 )
+                Spacer(Modifier.weight(1f))
             }
-        }
-        if (isLoading) {
-            CircularProgressIndicator(
-                modifier = Modifier
-                    .size(100.dp)
-            )
-        } else {
-            character?.let { ch ->
-                AsyncImage(
+            if (isLoading) {
+                CircularProgressIndicator(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .fillMaxWidth()
-                        .aspectRatio(1f)
-                        .clip(RoundedCornerShape(16.dp)),
-                    model = ch.image,
-                    contentScale = ContentScale.Crop,
-                    contentDescription = ch.name
+                        .size(100.dp),
+                    strokeWidth = 6.dp,
+                    strokeCap = StrokeCap.Round
                 )
-                Spacer(Modifier.height(16.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(com.test.feature.R.string.gender),
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W500,
-                        fontFamily = jostFontFamily
+            } else {
+                character?.let { ch ->
+                    AsyncImage(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .fillMaxWidth()
+                            .aspectRatio(1f)
+                            .clip(RoundedCornerShape(16.dp)),
+                        model = ch.image,
+                        contentScale = ContentScale.Crop,
+                        contentDescription = ch.name
                     )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        text = ch.gender,
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W600,
-                        fontFamily = jostFontFamily
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        stringResource(com.test.feature.R.string.status),
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W500,
-                        fontFamily = jostFontFamily
-                    )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        ch.status,
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W600,
-                        fontFamily = jostFontFamily
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        stringResource(com.test.feature.R.string.species),
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W500,
-                        fontFamily = jostFontFamily
-                    )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        ch.species,
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W600,
-                        fontFamily = jostFontFamily
-                    )
-                }
+                    Spacer(Modifier.height(16.dp))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = stringResource(com.test.feature.R.string.gender),
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W500,
+                            fontFamily = jostFontFamily
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Text(
+                            text = ch.gender,
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W600,
+                            fontFamily = jostFontFamily
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            stringResource(com.test.feature.R.string.status),
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W500,
+                            fontFamily = jostFontFamily
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Text(
+                            ch.status,
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W600,
+                            fontFamily = jostFontFamily
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            stringResource(com.test.feature.R.string.species),
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W500,
+                            fontFamily = jostFontFamily
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Text(
+                            ch.species,
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W600,
+                            fontFamily = jostFontFamily
+                        )
+                    }
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -227,58 +230,63 @@ fun CharacterFeatureRoot(
                         )
                         Spacer(Modifier.weight(1f))
                         Text(
-                            ch.type,
+                            ch.type.takeIf { it.isNotEmpty() } ?: "???",
                             fontSize = 18.sp,
                             color = colorResource(com.test.feature.R.color.dark_blue),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        stringResource(com.test.feature.R.string.origin),
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W500,
-                        fontFamily = jostFontFamily
-                    )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        ch.origin.name,
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W600,
-                        fontFamily = jostFontFamily
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        stringResource(com.test.feature.R.string.location),
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W500,
-                        fontFamily = jostFontFamily
-                    )
-                    Spacer(Modifier.weight(1f))
-                    Text(
-                        ch.location.name,
-                        fontSize = 18.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
-                        fontWeight = FontWeight.W600,
-                        fontFamily = jostFontFamily
-                    )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            stringResource(com.test.feature.R.string.origin),
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W500,
+                            fontFamily = jostFontFamily
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Text(
+                            ch.origin.name,
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W600,
+                            fontFamily = jostFontFamily
+                        )
+                    }
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            stringResource(com.test.feature.R.string.location),
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W500,
+                            fontFamily = jostFontFamily
+                        )
+                        Spacer(Modifier.weight(1f))
+                        Text(
+                            ch.location.name,
+                            fontSize = 18.sp,
+                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            fontWeight = FontWeight.W600,
+                            fontFamily = jostFontFamily
+                        )
+                    }
                 }
             }
         }
+        PullToRefreshContainer(
+            modifier = Modifier.align(Alignment.TopCenter),
+            state = pullState,
+        )
     }
 }
