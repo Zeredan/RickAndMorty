@@ -15,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -31,6 +32,9 @@ class SettingsViewModel @Inject constructor(
     val selectedLanguageStateFlow = settingsRepository.getSelectedLanguageAsFlow()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
+    val darkModeStateFlow = settingsRepository.getDarkModeEnabledAsFlow().map { it == true }
+        .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
     val wasAppRatedStateFlow = settingsRepository.getWasAppRatedAsFlow()
         .stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
@@ -45,6 +49,12 @@ class SettingsViewModel @Inject constructor(
                     1000
                 )
             }
+        }
+    }
+
+    fun updateDarkModeEnabled(value: Boolean) {
+        viewModelScope.launch {
+            settingsRepository.updateDarkModeEnabled(value)
         }
     }
 

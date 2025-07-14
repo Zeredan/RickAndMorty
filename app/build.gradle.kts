@@ -44,6 +44,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":feature"))
+    implementation(project(":feature:character"))
+    implementation(project(":feature:language"))
+    implementation(project(":feature:main"))
+    implementation(project(":feature:settings"))
+    implementation(project(":feature:splash"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

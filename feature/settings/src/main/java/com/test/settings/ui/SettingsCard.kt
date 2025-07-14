@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
-import com.anti.theft.alarm.find.feature.settings.R
+import com.test.settings.R
 
 @Composable
 fun SettingCard(
@@ -37,13 +37,13 @@ fun SettingCard(
                             onClick()
                         },
                         indication = rememberRipple(
-                            color = colorResource(R.color.dark_blue),
+                            color = colorResource(com.test.feature.R.color.dark_blue),
                         ),
                         interactionSource = remember{ MutableInteractionSource() }
                     )
                 else this
             }
-            .background(colorResource(R.color.white))
+            .background(colorResource(com.test.feature.R.color.white))
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

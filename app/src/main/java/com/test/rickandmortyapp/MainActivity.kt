@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.test.rickandmortyapp.ui.MainNavigationRoot
 import com.test.rickandmortyapp.ui.theme.RickAndMortyAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,15 +21,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            RickAndMortyAppTheme {
-                Scaffold(
-                    modifier = Modifier.fillMaxSize()
-                ) { innerPadding ->
-                    MainNavigationRoot(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                    )
-                }
+            Scaffold(
+                modifier = Modifier.fillMaxSize()
+            ) { innerPadding ->
+                MainNavigationRoot(
+                    modifier = Modifier
+                        .padding(innerPadding),
+                    deferredsToWait = listOf()
+                )
             }
         }
     }

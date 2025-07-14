@@ -20,9 +20,8 @@
             <option value="$PROJECT_DIR$/feature/character" />
             <option value="$PROJECT_DIR$/feature/language" />
             <option value="$PROJECT_DIR$/feature/main" />
-            <option value="$PROJECT_DIR$/feature/main/characters" />
-            <option value="$PROJECT_DIR$/feature/main/filters" />
             <option value="$PROJECT_DIR$/feature/settings" />
+            <option value="$PROJECT_DIR$/feature/splash" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.test.main"
+    namespace = "com.test.splash"
     compileSdk = 34
 
     defaultConfig {
@@ -38,9 +38,6 @@ android {
 
 dependencies {
     implementation(project(":feature"))
-    implementation(project(":data:characters"))
-    implementation(project(":data:characters:local"))
-    implementation(project(":data:characters:remote"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -66,11 +63,8 @@ dependencies {
     implementation(libs.firebase.crashlytics)
     androidTestImplementation(platform(libs.androidx.compose.bom))
 
-    implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     kapt("com.google.dagger:hilt-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-
-    implementation("io.coil-kt.coil3:coil-compose:3.2.0")
 }
