@@ -25,7 +25,7 @@ fun MarkSelector(
         Box(
             modifier = modifier
                 .clip(CircleShape)
-                .background(colorResource(R.color.m))
+                .background(colorResource(R.color.main_blue))
                 .size(20.dp)
                 .then(afterModifier),
             contentAlignment = Alignment.Center

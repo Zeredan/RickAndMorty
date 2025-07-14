@@ -221,7 +221,7 @@ fun SettingsFeatureRoot(
             }
             SettingCard {
                 Image(
-                    painter = painterResource(com.test.feature.R.drawable.darkmode),
+                    painter = painterResource(com.test.feature.R.drawable.dark_mode),
                     contentDescription = null
                 )
                 Spacer(Modifier.width(12.dp))

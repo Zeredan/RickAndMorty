@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="share">Share</string>
+    <string name="rate_us">Rate Us</string>
+    
+    <string name="lang_english">English</string>
+    <string name="lang_french">French</string>
+    <string name="lang_russian">Russian</string>
+    <string name="lang_vietnamese">Vietnamese</string>
+    <string name="lang_hindi">Hindi</string>
+    <string name="lang_german">German</string>
+    <string name="lang_indonesian">Indonesian</string>
+    <string name="lang_portuguese">Portuguese</string>
+    <string name="lang_chinese">Chinese</string>
+    <string name="lang_spanish">Spanish</string>
+    <string name="lang_azerbaijani">Azerbaijani</string>
+    <string name="lang_bengali">Bengali</string>
+    <string name="lang_georgian">Georgian</string>
+    <string name="lang_khmer">Khmer</string>
+    <string name="lang_thai">Thai</string>
+    <string name="lang_ukrainian">Ukrainian</string>
+    <string name="lang_uzbek">Uzbek</string>
+    <string name="rick_and_morty">Rick and Morty</string>
+    <string name="search_characters">Search characters</string>
+    <string name="alive">Alive</string>
+    <string name="dead">Dead</string>
+    <string name="unknown">Unknown</string>
+    <string name="dark_mode">Dark mode</string>
+</resources>
