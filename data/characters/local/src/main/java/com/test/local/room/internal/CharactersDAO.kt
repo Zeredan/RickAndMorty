@@ -2,6 +2,7 @@ package com.test.local.room.internal
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.test.local.room.model.CharacterEntity
@@ -12,12 +13,18 @@ interface CharactersDAO {
     @Query("SELECT * FROM CharacterEntity")
     fun getCharactersAsFlow() : Flow<List<CharacterEntity>>
 
+    @Query("SELECT * FROM CharacterEntity WHERE id = :idd")
+    fun getCharacterByIdAsFlow(idd: Int) : Flow<CharacterEntity?>
+
     @Update
     fun updateCharacters(characters: List<CharacterEntity>)
 
     @Insert
     fun insertCharacters(characters: List<CharacterEntity>)
-    
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertCharacter(character: CharacterEntity)
+
     @Query("DELETE FROM CharacterEntity")
     fun clearCharacters(): Int
 

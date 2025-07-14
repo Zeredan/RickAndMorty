@@ -6,6 +6,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalCharactersRepository {
     fun getCharactersAsFlow() : Flow<List<Character>>
+    fun getCharacterByIdAsFlow(id: Int) : Flow<Character?>
 
     fun updateCharacters(characters: List<Character>)
+    fun updateCharacter(character: Character)
 }

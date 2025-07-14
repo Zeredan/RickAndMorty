@@ -18,10 +18,20 @@ class LocalCharactersRepositoryImpl @Inject constructor(
         }
     }
 
+    override fun getCharacterByIdAsFlow(id: Int): Flow<Character?> {
+        return charactersDAO.getCharacterByIdAsFlow(id).map {
+            it?.toCharacter()
+        }
+    }
+
     override fun updateCharacters(
         characters: List<Character>
     ) {
         charactersDAO.clearCharacters()
         charactersDAO.insertCharacters(characters.map { CharacterEntity(it) })
+    }
+
+    override fun updateCharacter(character: Character) {
+        charactersDAO.insertCharacter(CharacterEntity(character))
     }
 }

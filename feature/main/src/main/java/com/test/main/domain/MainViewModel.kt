@@ -8,7 +8,6 @@ import com.test.main.domain.filters.CharacterFilter
 import com.test.remote.repository.RemoteCharactersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -46,19 +45,37 @@ class MainViewModel @Inject constructor(
     )
     val characterFilter = _characterFilter.asStateFlow()
 
+    private val _temporaryCharacterFilter = MutableStateFlow(
+        CharacterFilter(
+            status = "",
+            species = "",
+            type = "",
+            gender = ""
+        )
+    )
+    val temporaryCharacterFilter = _temporaryCharacterFilter.asStateFlow()
+
+    fun resetTemporaryFilter() {
+        _temporaryCharacterFilter.value = characterFilter.value
+    }
+
+    fun applyFilter() {
+        _characterFilter.value = temporaryCharacterFilter.value
+    }
+
     fun updateCharacterSearchFilter(filter: String) {
         _characterSearchFilter.value = filter
     }
 
-    fun updateCharacterFilter(filter: CharacterFilter) {
-        _characterFilter.value = filter
+    fun updateTemporaryCharacterFilter(filter: CharacterFilter) {
+        _temporaryCharacterFilter.value = filter
     }
 
     fun loadData() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                withTimeoutOrNull(5000) {
+                withTimeoutOrNull(7000) {
                     withContext(Dispatchers.IO) {
                         localCharactersRepository.updateCharacters(remoteCharactersRepository.getCharacters())
                     }
@@ -89,6 +106,11 @@ class MainViewModel @Inject constructor(
         }
         viewModelScope.launch {
             characterSearchFilter.collect {
+                filterCharacters()
+            }
+        }
+        viewModelScope.launch {
+            characterFilter.collect {
                 filterCharacters()
             }
         }

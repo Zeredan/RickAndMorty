@@ -14,7 +14,7 @@ class RemoteCharactersRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getCharacterInfo(characterId: Int): Character {
-        TODO()
+        return apiService.getCharacterInfo(characterId).toCharacter()
     }
 
 }

@@ -17,6 +17,7 @@ fun MainFeatureRoot(
     modifier: Modifier = Modifier,
     vm: MainViewModel = hiltViewModel(),
     onSettingsClicked: () -> Unit,
+    onCharacterClicked: (Int) -> Unit
 ) {
     val navController = rememberNavController()
     NavHost(
@@ -39,7 +40,8 @@ fun MainFeatureRoot(
                 },
                 onFilterClicked = {
                     navController.navigate(MainScreenState.FILTERS)
-                }
+                },
+                onCharacterClicked = onCharacterClicked
             )
         }
         composable(MainScreenState.FILTERS) {

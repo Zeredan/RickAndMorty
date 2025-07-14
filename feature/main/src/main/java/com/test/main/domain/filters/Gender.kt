@@ -4,5 +4,5 @@ object Gender {
     const val MALE = "Male"
     const val FEMALE = "Female"
     const val GENDERLESS = "Genderless"
-    const val UNKNOWN = "Unknown"
+    const val UNKNOWN = "unknown"
 }

@@ -19,9 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.test.character.ui.CharacterFeatureRoot
 import com.test.language.ui.LanguageFeatureRoot
 import com.test.main.domain.MainViewModel
 import com.test.main.ui.MainFeatureRoot
@@ -113,6 +116,38 @@ fun MainNavigationRoot(
                 onSettingsClicked = {
                     navController.navigate(ScreenState.SETTINGS)
                 },
+                onCharacterClicked = {
+                    navController.navigate("${ScreenState.CHARACTER}/$it")
+                }
+            )
+        }
+        composable(
+            route = "${ScreenState.CHARACTER}/{characterId}",
+        ) { backStackEntry ->
+            val characterId = backStackEntry.arguments?.getString("characterId")?.toIntOrNull() ?: 1
+            CharacterFeatureRoot(
+                id = characterId,
+                onBack = {
+                    navController.navigateUp()
+                }
+            )
+        }
+        composable(ScreenState.SETTINGS) {
+            selectedLanguage?.let { it1 ->
+                applySelectedLanguage(
+                    activity = activity,
+                    lang = it1
+                )
+            }
+            SettingsFeatureRoot(
+                vm = settingsViewModel,
+                isDarkMode = isDarkMode,
+                onBack = {
+                    navController.navigateUp()
+                },
+                onLangClicked = {
+                    navController.navigate(ScreenState.LANGUAGE)
+                }
             )
         }
         composable(ScreenState.LANGUAGE) {
@@ -135,25 +170,6 @@ fun MainNavigationRoot(
                 }
             )
         }
-        composable(ScreenState.SETTINGS) {
-            selectedLanguage?.let { it1 ->
-                applySelectedLanguage(
-                    activity = activity,
-                    lang = it1
-                )
-            }
-            SettingsFeatureRoot(
-                vm = settingsViewModel,
-                isDarkMode = isDarkMode,
-                onBack = {
-                    navController.navigateUp()
-                },
-                onLangClicked = {
-                    navController.navigate(ScreenState.LANGUAGE)
-                }
-            )
-        }
-
     }
 }
 

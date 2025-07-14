@@ -27,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -37,10 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
-import coil3.compose.rememberAsyncImagePainter
-import coil3.request.ImageRequest
 import com.test.feature.ui.RunningText
-import com.test.main.R
 import com.test.main.domain.MainViewModel
 import com.test.main.domain.filters.Status
 import kotlin.math.ceil
@@ -52,6 +48,7 @@ fun CharactersFeatureRoot(
     vm: MainViewModel,
     onFilterClicked: () -> Unit,
     onSettingsClicked: () -> Unit,
+    onCharacterClicked: (Int) -> Unit
 ) {
     val jostFontFamily = FontFamily(
         Font(com.test.feature.R.font.jost_medium, FontWeight.W500),
@@ -143,7 +140,10 @@ fun CharactersFeatureRoot(
                                         .weight(1f)
                                         .aspectRatio(0.8f)
                                         .clip(RoundedCornerShape(12.dp))
-                                        .background(colorResource(com.test.feature.R.color.gray)),
+                                        .background(colorResource(com.test.feature.R.color.gray))
+                                        .clickable {
+                                            onCharacterClicked(character.id)
+                                        },
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
                                     Box(

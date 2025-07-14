@@ -173,7 +173,7 @@ fun LanguageFeatureRoot(
             )
             Text(
                 text = stringResource(com.test.feature.R.string.language),
-                fontSize = 20.sp,
+                fontSize = 22.sp,
                 color = colorResource(com.test.feature.R.color.dark_blue),
                 fontWeight = FontWeight.W600,
                 fontFamily = jostFontFamily
