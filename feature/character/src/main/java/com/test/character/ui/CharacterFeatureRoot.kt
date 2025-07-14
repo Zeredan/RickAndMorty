@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshContainer
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
@@ -47,6 +48,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
 import com.test.character.R
 import com.test.character.domain.CharacterViewModel
+import com.test.feature.ui.UiColorTheme
 import kotlinx.coroutines.flow.first
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -55,7 +57,8 @@ fun CharacterFeatureRoot(
     modifier: Modifier = Modifier,
     id: Int,
     vm: CharacterViewModel = hiltViewModel(),
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    isDarkMode: Boolean
 ) {
     val jostFontFamily = FontFamily(
         Font(
@@ -92,7 +95,7 @@ fun CharacterFeatureRoot(
         Column(
             modifier = modifier
                 .fillMaxSize()
-                .background(colorResource(com.test.feature.R.color.bg_primary))
+                .background(colorResource(UiColorTheme[isDarkMode].backgroundPrimary))
                 .nestedScroll(pullState.nestedScrollConnection)
                 .verticalScroll(rememberScrollState())
                 .padding(top = 8.dp),
@@ -123,7 +126,7 @@ fun CharacterFeatureRoot(
                 Text(
                     text = character?.name ?: stringResource(com.test.feature.R.string.loading),
                     fontSize = 22.sp,
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontWeight = FontWeight.W600,
                     fontFamily = jostFontFamily
                 )
@@ -158,7 +161,7 @@ fun CharacterFeatureRoot(
                         Text(
                             text = stringResource(com.test.feature.R.string.gender),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -166,7 +169,7 @@ fun CharacterFeatureRoot(
                         Text(
                             text = ch.gender,
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
@@ -180,7 +183,7 @@ fun CharacterFeatureRoot(
                         Text(
                             stringResource(com.test.feature.R.string.status),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -188,7 +191,7 @@ fun CharacterFeatureRoot(
                         Text(
                             ch.status,
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
@@ -202,7 +205,7 @@ fun CharacterFeatureRoot(
                         Text(
                             stringResource(com.test.feature.R.string.species),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -210,7 +213,7 @@ fun CharacterFeatureRoot(
                         Text(
                             ch.species,
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
@@ -224,7 +227,7 @@ fun CharacterFeatureRoot(
                         Text(
                             stringResource(com.test.feature.R.string.type),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -232,7 +235,7 @@ fun CharacterFeatureRoot(
                         Text(
                             ch.type.takeIf { it.isNotEmpty() } ?: "???",
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
@@ -246,7 +249,7 @@ fun CharacterFeatureRoot(
                         Text(
                             stringResource(com.test.feature.R.string.origin),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -254,7 +257,7 @@ fun CharacterFeatureRoot(
                         Text(
                             ch.origin.name,
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )
@@ -268,7 +271,7 @@ fun CharacterFeatureRoot(
                         Text(
                             stringResource(com.test.feature.R.string.location),
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W500,
                             fontFamily = jostFontFamily
                         )
@@ -276,7 +279,7 @@ fun CharacterFeatureRoot(
                         Text(
                             ch.location.name,
                             fontSize = 18.sp,
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                             fontWeight = FontWeight.W600,
                             fontFamily = jostFontFamily
                         )

@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.feature.ui.MarkSelector
+import com.test.feature.ui.UiColorTheme
 import com.test.language.R
 
 @Composable
@@ -35,7 +36,8 @@ fun LanguageCard(
     text: String,
     icon: Int,
     selected: Boolean,
-    onClick: () -> Unit
+    isDarkMode: Boolean,
+    onClick: () -> Unit,
 ) {
     val jostFontFamily = FontFamily(
         Font(com.test.feature.R.font.jost_medium, FontWeight.W500, FontStyle.Normal),
@@ -50,11 +52,11 @@ fun LanguageCard(
                     onClick()
                 },
                 indication = rememberRipple(
-                    color = colorResource(com.test.feature.R.color.main_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].accentPrimary),
                 ),
-                interactionSource = remember{ MutableInteractionSource() }
+                interactionSource = remember { MutableInteractionSource() }
             )
-            .background(colorResource(com.test.feature.R.color.white))
+            .background(colorResource(UiColorTheme[isDarkMode].surfaceMain))
             .padding(horizontal = 16.dp, vertical = 18.dp),
         verticalAlignment = Alignment.CenterVertically
     )
@@ -69,14 +71,15 @@ fun LanguageCard(
         Spacer(Modifier.width(12.dp))
         Text(
             text,
-            color = colorResource(com.test.feature.R.color.dark_blue),
+            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
             fontSize = 16.sp,
             fontWeight = FontWeight.W500,
             fontFamily = jostFontFamily
         )
         Spacer(Modifier.weight(1f))
         MarkSelector(
-            selected = selected
+            selected = selected,
+            isDarkMode = isDarkMode
         )
     }
 }

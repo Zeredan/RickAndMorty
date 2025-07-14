@@ -35,6 +35,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.test.feature.ui.UiColorTheme
 import com.test.main.domain.MainViewModel
 import com.test.main.domain.filters.Gender
 import com.test.main.domain.filters.Status
@@ -44,7 +45,8 @@ fun FiltersFeatureRoot(
     modifier: Modifier = Modifier,
     vm: MainViewModel,
     onFiltersApplied: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    isDarkMode: Boolean
 ) {
     val jostFontFamily = FontFamily(
         Font(com.test.feature.R.font.jost_medium, FontWeight.W500),
@@ -85,7 +87,7 @@ fun FiltersFeatureRoot(
             Text(
                 text = stringResource(com.test.feature.R.string.filters),
                 fontSize = 22.sp,
-                color = colorResource(com.test.feature.R.color.dark_blue),
+                color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                 fontWeight = FontWeight.W600,
                 fontFamily = jostFontFamily
             )
@@ -122,16 +124,20 @@ fun FiltersFeatureRoot(
                         .clip(RoundedCornerShape(12.dp))
                         .background(
                             colorResource(
-                                if (status == characterFilter.status) com.test.feature.R.color.main_blue
-                                else com.test.feature.R.color.blue_secondary
+                                if (status == characterFilter.status)
+                                    UiColorTheme[isDarkMode].accentPrimary
+                                else
+                                    UiColorTheme[isDarkMode].accentSecondary
                             )
                         )
                         .border(
                             width = 2.dp,
                             shape = RoundedCornerShape(12.dp),
                             color = colorResource(
-                                if (status == characterFilter.status) com.test.feature.R.color.dark_blue
-                                else com.test.feature.R.color.purple
+                                if (status == characterFilter.status)
+                                    UiColorTheme[isDarkMode].textPrimary
+                                else
+                                    UiColorTheme[isDarkMode].buttonSpecial
                             )
                         )
                         .clickable {
@@ -146,7 +152,7 @@ fun FiltersFeatureRoot(
                     Text(
                         text = status,
                         fontSize = 16.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
+                        color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                         fontWeight = FontWeight.W600,
                         fontFamily = jostFontFamily
                     )
@@ -164,17 +170,17 @@ fun FiltersFeatureRoot(
             label = {
                 Text(
                     text = stringResource(com.test.feature.R.string.species),
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.W600,
                     fontFamily = jostFontFamily
                 )
             },
             colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                focusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                unfocusedTextColor = colorResource(com.test.feature.R.color.dark_blue),
-                focusedTextColor = colorResource(com.test.feature.R.color.dark_blue)
+                unfocusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                focusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                unfocusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary),
+                focusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary),
             )
         )
         Row(
@@ -192,16 +198,20 @@ fun FiltersFeatureRoot(
                         .clip(RoundedCornerShape(12.dp))
                         .background(
                             colorResource(
-                                if (gender == characterFilter.gender) com.test.feature.R.color.main_blue
-                                else com.test.feature.R.color.blue_secondary
+                                if (gender == characterFilter.gender)
+                                    UiColorTheme[isDarkMode].accentPrimary
+                                else
+                                    UiColorTheme[isDarkMode].accentSecondary
                             )
                         )
                         .border(
                             width = 2.dp,
                             shape = RoundedCornerShape(12.dp),
                             color = colorResource(
-                                if (gender == characterFilter.gender) com.test.feature.R.color.dark_blue
-                                else com.test.feature.R.color.purple
+                                if (gender == characterFilter.gender)
+                                    UiColorTheme[isDarkMode].textPrimary
+                                else
+                                    UiColorTheme[isDarkMode].buttonSpecial
                             )
                         )
                         .clickable {
@@ -216,7 +226,7 @@ fun FiltersFeatureRoot(
                     Text(
                         text = gender,
                         fontSize = 16.sp,
-                        color = colorResource(com.test.feature.R.color.dark_blue),
+                        color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                         fontWeight = FontWeight.W600,
                         fontFamily = jostFontFamily
                     )
@@ -234,17 +244,17 @@ fun FiltersFeatureRoot(
             label = {
                 Text(
                     text = stringResource(com.test.feature.R.string.type),
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.W600,
                     fontFamily = jostFontFamily
                 )
             },
             colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                focusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                unfocusedTextColor = colorResource(com.test.feature.R.color.dark_blue),
-                focusedTextColor = colorResource(com.test.feature.R.color.dark_blue)
+                unfocusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                focusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                unfocusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary),
+                focusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary),
             )
         )
     }

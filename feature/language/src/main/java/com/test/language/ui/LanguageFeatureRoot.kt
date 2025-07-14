@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.test.feature.ui.UiColorTheme
 import com.test.language.domain.LanguageViewModel
 import com.test.language.model.LanguageModel
 
@@ -44,7 +45,8 @@ fun LanguageFeatureRoot(
     modifier: Modifier = Modifier,
     vm: LanguageViewModel = hiltViewModel(),
     onBack: () -> Unit,
-    onOkay: () -> Unit
+    onOkay: () -> Unit,
+    isDarkMode: Boolean
 ) {
     val showOkMark by vm.showOkayMark.collectAsState()
     val langData = listOf(
@@ -145,7 +147,7 @@ fun LanguageFeatureRoot(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(colorResource(com.test.feature.R.color.bg_primary))
+            .background(colorResource(UiColorTheme[isDarkMode].backgroundPrimary))
             .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     )
@@ -174,7 +176,7 @@ fun LanguageFeatureRoot(
             Text(
                 text = stringResource(com.test.feature.R.string.language),
                 fontSize = 22.sp,
-                color = colorResource(com.test.feature.R.color.dark_blue),
+                color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                 fontWeight = FontWeight.W600,
                 fontFamily = jostFontFamily
             )
@@ -212,6 +214,7 @@ fun LanguageFeatureRoot(
                 LanguageCard(
                     text = text,
                     icon = img,
+                    isDarkMode = isDarkMode,
                     selected = (preSelectedLanguage == lang),
                 ) {
                     vm.preSelectLanguage(lang)

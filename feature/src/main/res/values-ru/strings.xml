@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Настройки</string>
+    <string name="filters">Фильтры</string>
+    <string name="language">Язык</string>
+    <string name="share">Поделиться</string>
+    <string name="rate_us">Оценить нас</string>
+    <string name="lang_english">Английский</string>
+    <string name="lang_french">Французский</string>
+    <string name="lang_russian">Русский</string>
+    <string name="lang_vietnamese">Вьетнамский</string>
+    <string name="lang_hindi">Хинди</string>
+    <string name="lang_german">Немецкий</string>
+    <string name="lang_indonesian">Индонезийский</string>
+    <string name="lang_portuguese">Португальский</string>
+    <string name="lang_chinese">Китайский</string>
+    <string name="lang_spanish">Испанский</string>
+    <string name="lang_azerbaijani">Азербайджанский</string>
+    <string name="lang_bengali">Бенгальский</string>
+    <string name="lang_georgian">Грузинский</string>
+    <string name="lang_khmer">Кхмерский</string>
+    <string name="lang_thai">Тайский</string>
+    <string name="lang_ukrainian">Украинский</string>
+    <string name="lang_uzbek">Узбекский</string>
+    <string name="rick_and_morty">Рик и Морти</string>
+    <string name="search_characters">Поиск персонажей</string>
+    <string name="alive">Жив</string>
+    <string name="dead">Мёртв</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="dark_mode">Тёмный режим</string>
+    <string name="type">Тип</string>
+    <string name="gender">Пол</string>
+    <string name="status">Статус</string>
+    <string name="species">Вид</string>
+    <string name="loading">Загрузка</string>
+    <string name="origin">Происхождение</string>
+    <string name="location">Местоположение</string>
+</resources>

@@ -14,18 +14,20 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.test.feature.R
+import com.test.feature.ui.UiColorTheme
 
 @Composable
 fun MarkSelector(
     modifier: Modifier = Modifier,
     afterModifier: Modifier = Modifier,
-    selected: Boolean
+    selected: Boolean,
+    isDarkMode: Boolean
 ) {
     if (selected) {
         Box(
             modifier = modifier
                 .clip(CircleShape)
-                .background(colorResource(R.color.main_blue))
+                .background(colorResource(UiColorTheme[isDarkMode].accentPrimary))
                 .size(20.dp)
                 .then(afterModifier),
             contentAlignment = Alignment.Center
@@ -41,7 +43,11 @@ fun MarkSelector(
         Box(
             modifier = modifier
                 .clip(CircleShape)
-                .border(2.dp, colorResource(R.color.main_blue), shape = CircleShape)
+                .border(
+                    2.dp,
+                    colorResource(UiColorTheme[isDarkMode].accentPrimary),
+                    shape = CircleShape
+                )
                 .size(20.dp)
                 .then(afterModifier)
         )

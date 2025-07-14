@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Sozlamalar</string>
+    <string name="filters">Filtrlar</string>
+    <string name="language">Til</string>
+    <string name="share">Ulashish</string>
+    <string name="rate_us">Bizni baholang</string>
+    <string name="lang_english">Inglizcha</string>
+    <string name="lang_french">Fransuzcha</string>
+    <string name="lang_russian">Ruscha</string>
+    <string name="lang_vietnamese">Vetnamcha</string>
+    <string name="lang_hindi">Hindcha</string>
+    <string name="lang_german">Nemischa</string>
+    <string name="lang_indonesian">Indonezcha</string>
+    <string name="lang_portuguese">Portugalcha</string>
+    <string name="lang_chinese">Xitoycha</string>
+    <string name="lang_spanish">Ispancha</string>
+    <string name="lang_azerbaijani">Ozarbayjoncha</string>
+    <string name="lang_bengali">Bengalcha</string>
+    <string name="lang_georgian">Gruzincha</string>
+    <string name="lang_khmer">Kxmercha</string>
+    <string name="lang_thai">Taycha</string>
+    <string name="lang_ukrainian">Ukraincha</string>
+    <string name="lang_uzbek">O\'zbekcha</string>
+    <string name="rick_and_morty">Rick va Morty</string>
+    <string name="search_characters">Belgilarni qidiring</string>
+    <string name="alive">Tirik</string>
+    <string name="dead">O\'lgan</string>
+    <string name="unknown">Noma\'lum</string>
+    <string name="dark_mode">Qorong\'u rejim</string>
+    <string name="type">Tur</string>
+    <string name="gender">Jinsi</string>
+    <string name="status">Holat</string>
+    <string name="species">Turi</string>
+    <string name="loading">Yuklanmoqda</string>
+    <string name="origin">Kelib chiqishi</string>
+    <string name="location">Manzil</string>
+</resources>

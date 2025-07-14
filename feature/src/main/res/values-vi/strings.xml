@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Cài đặt</string>
+    <string name="filters">Bộ lọc</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="share">Chia sẻ</string>
+    <string name="rate_us">Đánh giá chúng tôi</string>
+    <string name="lang_english">Tiếng Anh</string>
+    <string name="lang_french">Tiếng Pháp</string>
+    <string name="lang_russian">Tiếng Nga</string>
+    <string name="lang_vietnamese">Tiếng Việt</string>
+    <string name="lang_hindi">Tiếng Hindi</string>
+    <string name="lang_german">Tiếng Đức</string>
+    <string name="lang_indonesian">Tiếng Indonesia</string>
+    <string name="lang_portuguese">Tiếng Bồ Đào Nha</string>
+    <string name="lang_chinese">Tiếng Trung</string>
+    <string name="lang_spanish">Tiếng Tây Ban Nha</string>
+    <string name="lang_azerbaijani">Tiếng Azerbaijan</string>
+    <string name="lang_bengali">Tiếng Bengal</string>
+    <string name="lang_georgian">Tiếng Gruzia</string>
+    <string name="lang_khmer">Tiếng Khmer</string>
+    <string name="lang_thai">Tiếng Thái</string>
+    <string name="lang_ukrainian">Tiếng Ukraina</string>
+    <string name="lang_uzbek">Tiếng Uzbekistan</string>
+    <string name="rick_and_morty">Rick và Morty</string>
+    <string name="search_characters">Tìm kiếm nhân vật</string>
+    <string name="alive">Còn sống</string>
+    <string name="dead">Đã chết</string>
+    <string name="unknown">Không biết</string>
+    <string name="dark_mode">Chế độ tối</string>
+    <string name="type">Loại</string>
+    <string name="gender">Giới tính</string>
+    <string name="status">Trạng thái</string>
+    <string name="species">Loài</string>
+    <string name="loading">Đang tải</string>
+    <string name="origin">Nguồn gốc</string>
+    <string name="location">Vị trí</string>
+</resources>

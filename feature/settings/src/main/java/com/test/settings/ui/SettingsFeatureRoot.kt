@@ -88,7 +88,7 @@ fun SettingsFeatureRoot(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(colorResource(com.test.feature.R.color.bg_primary))
+            .background(colorResource(UiColorTheme[isDarkMode].backgroundPrimary))
             .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     )
@@ -117,7 +117,7 @@ fun SettingsFeatureRoot(
             Text(
                 text = stringResource(com.test.feature.R.string.settings),
                 fontSize = 22.sp,
-                color = colorResource(com.test.feature.R.color.dark_blue),
+                color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                 fontWeight = FontWeight.W600,
                 fontFamily = jostFontFamily
             )
@@ -133,9 +133,8 @@ fun SettingsFeatureRoot(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             SettingCard(
-                onClick = {
-                    onLangClicked()
-                }
+                onClick = { onLangClicked() },
+                isDarkMode = isDarkMode
             ) {
                 Image(
                     painter = painterResource(com.test.feature.R.drawable.language),
@@ -145,7 +144,7 @@ fun SettingsFeatureRoot(
                 Text(
                     text = stringResource(com.test.feature.R.string.language),
                     fontSize = 18.sp,
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontWeight = FontWeight.W500,
                     fontFamily = jostFontFamily
                 )
@@ -156,7 +155,7 @@ fun SettingsFeatureRoot(
                             ?: com.test.feature.R.string.lang_english
                     ),
                     fontSize = 18.sp,
-                    color = colorResource(com.test.feature.R.color.main_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].accentPrimary),
                     fontWeight = FontWeight.W500,
                     fontFamily = jostFontFamily
                 )
@@ -164,7 +163,8 @@ fun SettingsFeatureRoot(
             SettingCard(
                 onClick = {
                     vm.shareApp(context as ComponentActivity)
-                }
+                },
+                isDarkMode = isDarkMode
             ) {
                 Image(
                     painter = painterResource(com.test.feature.R.drawable.share),
@@ -174,7 +174,7 @@ fun SettingsFeatureRoot(
                 Text(
                     text = stringResource(com.test.feature.R.string.share),
                     fontSize = 18.sp,
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontWeight = FontWeight.W500,
                     fontFamily = jostFontFamily
                 )
@@ -194,7 +194,8 @@ fun SettingsFeatureRoot(
                             onClick = {
                                 vm.openGooglePlayForRating(context as ComponentActivity) {
                                 }
-                            }
+                            },
+                            isDarkMode = isDarkMode
                         ) {
                             Image(
                                 painter = painterResource(com.test.feature.R.drawable.star),
@@ -204,7 +205,7 @@ fun SettingsFeatureRoot(
                             Text(
                                 text = stringResource(com.test.feature.R.string.rate_us),
                                 fontSize = 18.sp,
-                                color = colorResource(com.test.feature.R.color.dark_blue),
+                                color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                                 fontWeight = FontWeight.W500,
                                 fontFamily = jostFontFamily
                             )
@@ -219,7 +220,9 @@ fun SettingsFeatureRoot(
                     }
                 }
             }
-            SettingCard {
+            SettingCard(
+                isDarkMode = isDarkMode
+            ) {
                 Image(
                     painter = painterResource(com.test.feature.R.drawable.dark_mode),
                     contentDescription = null
@@ -228,7 +231,7 @@ fun SettingsFeatureRoot(
                 Text(
                     text = stringResource(com.test.feature.R.string.dark_mode),
                     fontSize = 18.sp,
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontWeight = FontWeight.W500,
                     fontFamily = jostFontFamily
                 )
@@ -244,18 +247,18 @@ fun SettingsFeatureRoot(
                             modifier = Modifier
                                 .size(20.dp)
                                 .clip(CircleShape)
-                                .background(colorResource(com.test.feature.R.color.white))
+                                .background(colorResource(UiColorTheme[isDarkMode].surfaceMain))
                         )
                     },
                     colors = SwitchDefaults.colors(
-                        checkedTrackColor = colorResource(com.test.feature.R.color.main_blue),
-                        uncheckedTrackColor = colorResource(com.test.feature.R.color.bg_secondary),
+                        checkedTrackColor = colorResource(UiColorTheme[isDarkMode].accentPrimary),
+                        uncheckedTrackColor = colorResource(UiColorTheme[isDarkMode].backgroundSecondary),
                         checkedBorderColor = Color.Transparent,
                         uncheckedBorderColor = Color.Transparent,
-                        checkedThumbColor = colorResource(com.test.feature.R.color.white),
-                        uncheckedThumbColor = colorResource(com.test.feature.R.color.white),
-                        checkedIconColor = colorResource(com.test.feature.R.color.white),
-                        uncheckedIconColor = colorResource(com.test.feature.R.color.white),
+                        checkedThumbColor = colorResource(UiColorTheme[isDarkMode].surfaceMain),
+                        uncheckedThumbColor = colorResource(UiColorTheme[isDarkMode].surfaceMain),
+                        checkedIconColor = colorResource(UiColorTheme[isDarkMode].surfaceMain),
+                        uncheckedIconColor = colorResource(UiColorTheme[isDarkMode].surfaceMain),
                     )
                 )
             }

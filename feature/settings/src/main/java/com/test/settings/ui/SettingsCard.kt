@@ -17,12 +17,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.test.feature.ui.UiColorTheme
 import com.test.settings.R
 
 @Composable
 fun SettingCard(
     modifier: Modifier = Modifier,
     onClick: (() -> Unit)? = null,
+    isDarkMode: Boolean,
     content: @Composable RowScope.() -> Unit
 ) {
     Row(
@@ -30,20 +32,20 @@ fun SettingCard(
             .fillMaxWidth()
             .height(56.dp)
             .clip(RoundedCornerShape(16.dp))
-            .run{
+            .run {
                 if (onClick != null)
                     clickable(
                         onClick = {
                             onClick()
                         },
                         indication = rememberRipple(
-                            color = colorResource(com.test.feature.R.color.dark_blue),
+                            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                         ),
-                        interactionSource = remember{ MutableInteractionSource() }
+                        interactionSource = remember { MutableInteractionSource() }
                     )
                 else this
             }
-            .background(colorResource(com.test.feature.R.color.white))
+            .background(colorResource(UiColorTheme[isDarkMode].surfaceMain))
             .padding(horizontal = 16.dp, vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {

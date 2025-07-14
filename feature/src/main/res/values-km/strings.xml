@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">ការកំណត់</string>
+    <string name="filters">តម្រង</string>
+    <string name="language">ភាសា</string>
+    <string name="share">ចែករំលែក</string>
+    <string name="rate_us">វាយតម្លៃយើងខ្ញុំ</string>
+    <string name="lang_english">អង់គ្លេស</string>
+    <string name="lang_french">បារាំង</string>
+    <string name="lang_russian">រុស្ស៊ី</string>
+    <string name="lang_vietnamese">វៀតណាម</string>
+    <string name="lang_hindi">ហិណ្ឌុ</string>
+    <string name="lang_german">អាល្លឺម៉ង់</string>
+    <string name="lang_indonesian">ឥណ្ឌូណេស៊ី</string>
+    <string name="lang_portuguese">ព័រទុយហ្គាល់</string>
+    <string name="lang_chinese">ចិន</string>
+    <string name="lang_spanish">អេស្ប៉ាញ</string>
+    <string name="lang_azerbaijani">អាស៊ែបៃហ្សង់</string>
+    <string name="lang_bengali">បង់ក្លាដែស</string>
+    <string name="lang_georgian">ជ័រហ្ស៊ី</string>
+    <string name="lang_khmer">ខ្មែរ</string>
+    <string name="lang_thai">ថៃ</string>
+    <string name="lang_ukrainian">អ៊ុយក្រែន</string>
+    <string name="lang_uzbek">អ៊ូសបេគីស្តង់</string>
+    <string name="rick_and_morty">រីក និង ម៉ត់ទី</string>
+    <string name="search_characters">ស្វែងរកតួអង្គ</string>
+    <string name="alive">នៅមានជីវិត</string>
+    <string name="dead">ស្លាប់</string>
+    <string name="unknown">មិនស្គាល់</string>
+    <string name="dark_mode">របៀបងងឹត</string>
+    <string name="type">ប្រភេទ</string>
+    <string name="gender">ភេទ</string>
+    <string name="status">ស្ថានភាព</string>
+    <string name="species">សារពាង្គកាយ</string>
+    <string name="loading">កំពុងផ្ទុក</string>
+    <string name="origin">ប្រភព</string>
+    <string name="location">ទីតាំង</string>
+</resources>

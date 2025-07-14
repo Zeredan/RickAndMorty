@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Configuración</string>
+    <string name="filters">Filtros</string>
+    <string name="language">Idioma</string>
+    <string name="share">Compartir</string>
+    <string name="rate_us">Califícanos</string>
+    <string name="lang_english">Inglés</string>
+    <string name="lang_french">Francés</string>
+    <string name="lang_russian">Ruso</string>
+    <string name="lang_vietnamese">Vietnamita</string>
+    <string name="lang_hindi">Hindi</string>
+    <string name="lang_german">Alemán</string>
+    <string name="lang_indonesian">Indonesio</string>
+    <string name="lang_portuguese">Portugués</string>
+    <string name="lang_chinese">Chino</string>
+    <string name="lang_spanish">Español</string>
+    <string name="lang_azerbaijani">Azerbaiyano</string>
+    <string name="lang_bengali">Bengalí</string>
+    <string name="lang_georgian">Georgiano</string>
+    <string name="lang_khmer">Jemer</string>
+    <string name="lang_thai">Tailandés</string>
+    <string name="lang_ukrainian">Ucraniano</string>
+    <string name="lang_uzbek">Uzbeko</string>
+    <string name="rick_and_morty">Rick y Morty</string>
+    <string name="search_characters">Buscar personajes</string>
+    <string name="alive">Vivo</string>
+    <string name="dead">Muerto</string>
+    <string name="unknown">Desconocido</string>
+    <string name="dark_mode">Modo oscuro</string>
+    <string name="type">Tipo</string>
+    <string name="gender">Género</string>
+    <string name="status">Estado</string>
+    <string name="species">Especie</string>
+    <string name="loading">Cargando</string>
+    <string name="origin">Origen</string>
+    <string name="location">Ubicación</string>
+</resources>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">सेटिंग्स</string>
+    <string name="filters">फ़िल्टर</string>
+    <string name="language">भाषा</string>
+    <string name="share">साझा करें</string>
+    <string name="rate_us">हमें रेट करें</string>
+    <string name="lang_english">अंग्रेज़ी</string>
+    <string name="lang_french">फ़्रेंच</string>
+    <string name="lang_russian">रूसी</string>
+    <string name="lang_vietnamese">वियतनामी</string>
+    <string name="lang_hindi">हिंदी</string>
+    <string name="lang_german">जर्मन</string>
+    <string name="lang_indonesian">इंडोनेशियाई</string>
+    <string name="lang_portuguese">पुर्तगाली</string>
+    <string name="lang_chinese">चीनी</string>
+    <string name="lang_spanish">स्पेनिश</string>
+    <string name="lang_azerbaijani">अज़रबैजानी</string>
+    <string name="lang_bengali">बंगाली</string>
+    <string name="lang_georgian">जॉर्जियन</string>
+    <string name="lang_khmer">ख्मेर</string>
+    <string name="lang_thai">थाई</string>
+    <string name="lang_ukrainian">यूक्रेनी</string>
+    <string name="lang_uzbek">उज़्बेक</string>
+    <string name="rick_and_morty">रिक और मॉर्टी</string>
+    <string name="search_characters">पात्र खोजें</string>
+    <string name="alive">जीवित</string>
+    <string name="dead">मृत</string>
+    <string name="unknown">अज्ञात</string>
+    <string name="dark_mode">डार्क मोड</string>
+    <string name="type">प्रकार</string>
+    <string name="gender">लिंग</string>
+    <string name="status">स्थिति</string>
+    <string name="species">प्रजाति</string>
+    <string name="loading">लोड हो रहा है</string>
+    <string name="origin">मूल</string>
+    <string name="location">स्थान</string>
+</resources>

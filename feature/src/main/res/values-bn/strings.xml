@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">সেটিংস</string>
+    <string name="filters">ফিল্টার</string>
+    <string name="language">ভাষা</string>
+    <string name="share">শেয়ার করুন</string>
+    <string name="rate_us">আমাদের রেট দিন</string>
+    <string name="lang_english">ইংরেজি</string>
+    <string name="lang_french">ফরাসি</string>
+    <string name="lang_russian">রুশ</string>
+    <string name="lang_vietnamese">ভিয়েতনামী</string>
+    <string name="lang_hindi">হিন্দি</string>
+    <string name="lang_german">জার্মান</string>
+    <string name="lang_indonesian">ইন্দোনেশিয়ান</string>
+    <string name="lang_portuguese">পর্তুগিজ</string>
+    <string name="lang_chinese">চাইনিজ</string>
+    <string name="lang_spanish">স্প্যানিশ</string>
+    <string name="lang_azerbaijani">আজারবাইজানি</string>
+    <string name="lang_bengali">বাংলা</string>
+    <string name="lang_georgian">জর্জিয়ান</string>
+    <string name="lang_khmer">খ্মের</string>
+    <string name="lang_thai">থাই</string>
+    <string name="lang_ukrainian">ইউক্রেনীয়</string>
+    <string name="lang_uzbek">উজবেক</string>
+    <string name="rick_and_morty">রিক অ্যান্ড মোর্টি</string>
+    <string name="search_characters">চরিত্র অনুসন্ধান</string>
+    <string name="alive">জীবিত</string>
+    <string name="dead">মৃত</string>
+    <string name="unknown">অজানা</string>
+    <string name="dark_mode">ডার্ক মোড</string>
+    <string name="type">ধরন</string>
+    <string name="gender">লিঙ্গ</string>
+    <string name="status">অবস্থা</string>
+    <string name="species">প্রজাতি</string>
+    <string name="loading">লোড হচ্ছে</string>
+    <string name="origin">উত্স</string>
+    <string name="location">অবস্থান</string>
+</resources>

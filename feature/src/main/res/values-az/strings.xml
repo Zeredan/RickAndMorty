@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Ayarlar</string>
+    <string name="filters">Filtrlər</string>
+    <string name="language">Dil</string>
+    <string name="share">Paylaş</string>
+    <string name="rate_us">Bizi qiymətləndir</string>
+    <string name="lang_english">İngilis</string>
+    <string name="lang_french">Fransız</string>
+    <string name="lang_russian">Rus</string>
+    <string name="lang_vietnamese">Vyetnam</string>
+    <string name="lang_hindi">Hind</string>
+    <string name="lang_german">Alman</string>
+    <string name="lang_indonesian">İndoneziya</string>
+    <string name="lang_portuguese">Portuqal</string>
+    <string name="lang_chinese">Çin</string>
+    <string name="lang_spanish">İspan</string>
+    <string name="lang_azerbaijani">Azərbaycanca</string>
+    <string name="lang_bengali">Bengal</string>
+    <string name="lang_georgian">Gürcü</string>
+    <string name="lang_khmer">Kxmer</string>
+    <string name="lang_thai">Tay</string>
+    <string name="lang_ukrainian">Ukrayna</string>
+    <string name="lang_uzbek">Özbək</string>
+    <string name="rick_and_morty">Rick və Morty</string>
+    <string name="search_characters">Personajları axtar</string>
+    <string name="alive">Canlı</string>
+    <string name="dead">Ölü</string>
+    <string name="unknown">Naməlum</string>
+    <string name="dark_mode">Qaranlıq rejim</string>
+    <string name="type">Tip</string>
+    <string name="gender">Cins</string>
+    <string name="status">Status</string>
+    <string name="species">Növ</string>
+    <string name="loading">Yüklənir</string>
+    <string name="origin">Mənşə</string>
+    <string name="location">Məkan</string>
+</resources>

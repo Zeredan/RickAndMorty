@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.test.feature.ui.UiColorTheme
 import com.test.splash.domain.SplashViewModel
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.Job
@@ -43,7 +44,8 @@ fun SplashFeatureRoot(
     jobsToWait: List<Job>,
     deferredsToWait: List<Deferred<Any>>,
     onSuccess: () -> Unit,
-    onError: () -> Unit
+    onError: () -> Unit,
+    isDarkMode: Boolean
 ) {
     val jostFontFamily = FontFamily(
         Font(com.test.feature.R.font.jost_medium, FontWeight.W500, FontStyle.Normal),
@@ -51,13 +53,15 @@ fun SplashFeatureRoot(
     )
     val activity = LocalContext.current as ComponentActivity
     val window = activity.window
-    DisposableEffect(1) {
-        window.navigationBarColor = activity.resources.getColor(com.test.feature.R.color.white)
-        window.statusBarColor = activity.resources.getColor(com.test.feature.R.color.white)
-
+    DisposableEffect(isDarkMode) {
+        window.navigationBarColor =
+            activity.resources.getColor(UiColorTheme[isDarkMode].surfaceMain)
+        window.statusBarColor = activity.resources.getColor(UiColorTheme[isDarkMode].surfaceMain)
         onDispose {
-            window.navigationBarColor = activity.resources.getColor(com.test.feature.R.color.bg_primary)
-            window.statusBarColor = activity.resources.getColor(com.test.feature.R.color.bg_primary)
+            window.navigationBarColor =
+                activity.resources.getColor(UiColorTheme[isDarkMode].backgroundPrimary)
+            window.statusBarColor =
+                activity.resources.getColor(UiColorTheme[isDarkMode].backgroundPrimary)
         }
     }
 
@@ -73,7 +77,7 @@ fun SplashFeatureRoot(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(colorResource(com.test.feature.R.color.white)),
+            .background(colorResource(UiColorTheme[isDarkMode].surfaceMain)),
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
@@ -89,7 +93,7 @@ fun SplashFeatureRoot(
         Text(
             text = stringResource(com.test.feature.R.string.rick_and_morty),
             fontSize = 22.sp,
-            color = colorResource(com.test.feature.R.color.dark_blue),
+            color = colorResource(UiColorTheme[isDarkMode].textPrimary),
             fontWeight = FontWeight.W600,
             fontFamily = jostFontFamily
         )
@@ -102,8 +106,8 @@ fun SplashFeatureRoot(
             progress = {
                 vm.progress
             },
-            trackColor = colorResource(com.test.feature.R.color.bg_secondary),
-            color = colorResource(com.test.feature.R.color.main_blue),
+            trackColor = colorResource(UiColorTheme[isDarkMode].backgroundSecondary),
+            color = colorResource(UiColorTheme[isDarkMode].accentPrimary),
             strokeCap = StrokeCap.Round
         )
         Spacer(Modifier.height(102.dp))

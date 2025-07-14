@@ -58,7 +58,7 @@ fun MainNavigationRoot(
     NavHost(
         modifier = modifier
             .fillMaxSize()
-            .background(colorResource(com.test.feature.R.color.bg_primary)),
+            .background(colorResource(com.test.feature.ui.UiColorTheme[isDarkMode].backgroundPrimary)),
         navController = navController,
         startDestination = ScreenState.SPLASH,
         enterTransition = {
@@ -79,6 +79,7 @@ fun MainNavigationRoot(
                 jobsToWait = remember {
                     emptyList()
                 },
+                isDarkMode = isDarkMode,
                 deferredsToWait = remember {
                     listOf(
                         coroutineScope.async {
@@ -113,6 +114,7 @@ fun MainNavigationRoot(
             }
             MainFeatureRoot(
                 vm = mainViewModel,
+                isDarkMode = isDarkMode,
                 onSettingsClicked = {
                     navController.navigate(ScreenState.SETTINGS)
                 },
@@ -127,7 +129,8 @@ fun MainNavigationRoot(
             val characterId = backStackEntry.arguments?.getString("characterId")?.toIntOrNull() ?: 1
             CharacterFeatureRoot(
                 id = characterId,
-                onBack = {
+                isDarkMode = isDarkMode,
+                 onBack = {
                     navController.navigateUp()
                 }
             )
@@ -158,6 +161,7 @@ fun MainNavigationRoot(
                 )
             }
             LanguageFeatureRoot(
+                isDarkMode = isDarkMode,
                 onBack = {
                     navController.navigateUp()
                 },

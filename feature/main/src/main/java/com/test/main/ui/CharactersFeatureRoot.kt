@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.AsyncImage
 import com.test.feature.ui.RunningText
+import com.test.feature.ui.UiColorTheme
 import com.test.main.domain.MainViewModel
 import com.test.main.domain.filters.Status
 import kotlinx.coroutines.flow.first
@@ -58,7 +59,8 @@ fun CharactersFeatureRoot(
     vm: MainViewModel,
     onFilterClicked: () -> Unit,
     onSettingsClicked: () -> Unit,
-    onCharacterClicked: (Int) -> Unit
+    onCharacterClicked: (Int) -> Unit,
+    isDarkMode: Boolean
 ) {
     val jostFontFamily = FontFamily(
         Font(com.test.feature.R.font.jost_medium, FontWeight.W500),
@@ -97,7 +99,7 @@ fun CharactersFeatureRoot(
             ) {
                 Text(
                     text = stringResource(com.test.feature.R.string.rick_and_morty),
-                    color = colorResource(com.test.feature.R.color.dark_blue),
+                    color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                     fontSize = 22.sp,
                     fontWeight = FontWeight.W600,
                     fontFamily = jostFontFamily
@@ -125,17 +127,17 @@ fun CharactersFeatureRoot(
                 label = {
                     Text(
                         text = stringResource(com.test.feature.R.string.search_characters),
-                        color = colorResource(com.test.feature.R.color.dark_blue),
+                        color = colorResource(UiColorTheme[isDarkMode].textPrimary),
                         fontSize = 16.sp,
                         fontWeight = FontWeight.W600,
                         fontFamily = jostFontFamily
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                    focusedContainerColor = colorResource(com.test.feature.R.color.bg_primary),
-                    unfocusedTextColor = colorResource(com.test.feature.R.color.dark_blue),
-                    focusedTextColor = colorResource(com.test.feature.R.color.dark_blue)
+                    unfocusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                    focusedContainerColor = colorResource(UiColorTheme[isDarkMode].backgroundPrimary),
+                    unfocusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary),
+                    focusedTextColor = colorResource(UiColorTheme[isDarkMode].textPrimary)
                 )
             )
             if (isLoading) {
@@ -169,7 +171,7 @@ fun CharactersFeatureRoot(
                                             .weight(1f)
                                             .aspectRatio(0.8f)
                                             .clip(RoundedCornerShape(12.dp))
-                                            .background(colorResource(com.test.feature.R.color.gray))
+                                            .background(colorResource(UiColorTheme[isDarkMode].containerSecondary))
                                             .clickable {
                                                 onCharacterClicked(character.id)
                                             },
@@ -199,7 +201,7 @@ fun CharactersFeatureRoot(
                                                             0.dp
                                                         )
                                                     )
-                                                    .background(colorResource(com.test.feature.R.color.black1))
+                                                    .background(colorResource(UiColorTheme[isDarkMode].dialogBgAlt))
                                                     .padding(4.dp),
                                                 horizontalArrangement = Arrangement.spacedBy(5.dp),
                                                 verticalAlignment = Alignment.CenterVertically
@@ -211,9 +213,9 @@ fun CharactersFeatureRoot(
                                                         .background(
                                                             colorResource(
                                                                 when (character.status) {
-                                                                    Status.ALIVE -> com.test.feature.R.color.green
-                                                                    Status.DEAD -> com.test.feature.R.color.red
-                                                                    else -> com.test.feature.R.color.purple
+                                                                    Status.ALIVE -> UiColorTheme[isDarkMode].statusAlive
+                                                                    Status.DEAD -> UiColorTheme[isDarkMode].statusDead
+                                                                    else -> UiColorTheme[isDarkMode].buttonSpecial
                                                                 }
                                                             )
                                                         )
@@ -226,7 +228,7 @@ fun CharactersFeatureRoot(
                                                             else -> com.test.feature.R.string.unknown
                                                         }
                                                     ),
-                                                    color = colorResource(com.test.feature.R.color.main_blue),
+                                                    color = colorResource(UiColorTheme[isDarkMode].accentPrimary),
                                                     fontSize = 16.sp,
                                                     fontWeight = FontWeight.W600,
                                                     fontFamily = jostFontFamily
@@ -237,7 +239,7 @@ fun CharactersFeatureRoot(
                                             modifier = Modifier
                                                 .weight(2f)
                                                 .fillMaxWidth()
-                                                .background(colorResource(com.test.feature.R.color.black))
+                                                .background(colorResource(UiColorTheme[isDarkMode].dialogBg))
                                                 .padding(16.dp),
                                             horizontalAlignment = Alignment.CenterHorizontally
                                         ) {
@@ -245,11 +247,12 @@ fun CharactersFeatureRoot(
                                                 modifier = Modifier
                                                     .fillMaxWidth(),
                                                 text = character.name,
-                                                textColor = colorResource(com.test.feature.R.color.main_blue)
+                                                textColor = colorResource(UiColorTheme[isDarkMode].accentPrimary),
+                                                isDarkMode = isDarkMode
                                             )
                                             Text(
                                                 text = "${character.gender} | ${character.species}",
-                                                color = colorResource(com.test.feature.R.color.purple),
+                                                color = colorResource(UiColorTheme[isDarkMode].buttonSpecial),
                                                 fontSize = 14.sp,
                                                 fontWeight = FontWeight.W500,
                                                 fontFamily = jostFontFamily
@@ -274,7 +277,7 @@ fun CharactersFeatureRoot(
                 .padding(36.dp)
                 .clip(CircleShape)
                 .size(80.dp)
-                .background(colorResource(com.test.feature.R.color.purple))
+                .background(colorResource(UiColorTheme[isDarkMode].buttonSpecial))
                 .clickable {
                     onFilterClicked()
                 },

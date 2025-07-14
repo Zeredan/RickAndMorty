@@ -15,4 +15,22 @@
     <color name="red">#F44336</color>
     <color name="black">#503050</color>
     <color name="black1">#300030</color>
+
+    <!-- Anti Colors -->
+    <color name="anti_dark_blue">#F2DD99</color>
+    <color name="anti_main_blue">#FF7300</color>
+    <color name="anti_purple">#5F5320</color>
+    <color name="anti_blue_secondary">#5C3300</color>
+    <color name="anti_bg_primary">#100900</color>
+    <color name="anti_bg_secondary">#361E00</color>
+    <color name="anti_white">#000000</color>
+    <color name="anti_gray">#3C3C3C</color>
+    <color name="anti_gray1">#1F1A07</color>
+    <color name="anti_border_inactive">#191919</color>
+    <color name="anti_text_inactive">#1A1A1A</color>
+    <color name="anti_green">#B350AF</color>
+    <color name="anti_red">#0BBCC9</color>
+    <color name="anti_black">#AFCFAF</color>
+    <color name="anti_black1">#CFFFCF</color>
+
 </resources>

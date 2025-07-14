@@ -36,6 +36,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.test.feature.R
+import com.test.feature.ui.UiColorTheme
 import kotlin.math.roundToInt
 
 @Composable
@@ -43,12 +44,16 @@ fun RunningText(
     modifier: Modifier = Modifier,
     text: String,
     extraSpace: Float = 5f,
-    textColor: Color = colorResource(R.color.dark_blue),
+    textColor: Color = Color.Unspecified,
+    isDarkMode: Boolean
 ) {
     val jostFontFamily = FontFamily(
         Font(R.font.jost_medium, FontWeight.W500, FontStyle.Normal),
         Font(R.font.jost_semibold, FontWeight.W600, FontStyle.Normal)
     )
+
+    val resolvedTextColor =
+        if (textColor == Color.Unspecified) colorResource(UiColorTheme[isDarkMode].textPrimary) else textColor
 
     var containerWidth by remember { mutableStateOf(0f) }
     var actualTextWidth by remember { mutableStateOf(0f) }
@@ -65,7 +70,7 @@ fun RunningText(
             ) {
                 Text(
                     text = text,
-                    color = textColor,
+                    color = resolvedTextColor,
                     fontSize = 16.sp,
                     fontFamily = jostFontFamily,
                     fontWeight = FontWeight.W500,
@@ -102,7 +107,7 @@ fun RunningText(
                 Row {
                     Text(
                         text = text,
-                        color = textColor,
+                        color = resolvedTextColor,
                         fontSize = 16.sp,
                         fontFamily = jostFontFamily,
                         fontWeight = FontWeight.W500,
@@ -112,7 +117,7 @@ fun RunningText(
                     Spacer(Modifier.width(extraSpace.dp))
                     Text(
                         text = text,
-                        color = textColor,
+                        color = resolvedTextColor,
                         fontSize = 16.sp,
                         fontFamily = jostFontFamily,
                         fontWeight = FontWeight.W500,

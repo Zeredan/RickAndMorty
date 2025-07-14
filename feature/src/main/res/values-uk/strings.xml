@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">Налаштування</string>
+    <string name="filters">Фільтри</string>
+    <string name="language">Мова</string>
+    <string name="share">Поділитися</string>
+    <string name="rate_us">Оцініть нас</string>
+    <string name="lang_english">Англійська</string>
+    <string name="lang_french">Французька</string>
+    <string name="lang_russian">Російська</string>
+    <string name="lang_vietnamese">В\'єтнамська</string>
+    <string name="lang_hindi">Гінді</string>
+    <string name="lang_german">Німецька</string>
+    <string name="lang_indonesian">Індонезійська</string>
+    <string name="lang_portuguese">Португальська</string>
+    <string name="lang_chinese">Китайська</string>
+    <string name="lang_spanish">Іспанська</string>
+    <string name="lang_azerbaijani">Азербайджанська</string>
+    <string name="lang_bengali">Бенгальська</string>
+    <string name="lang_georgian">Грузинська</string>
+    <string name="lang_khmer">Кхмерська</string>
+    <string name="lang_thai">Тайська</string>
+    <string name="lang_ukrainian">Українська</string>
+    <string name="lang_uzbek">Узбецька</string>
+    <string name="rick_and_morty">Рік і Морті</string>
+    <string name="search_characters">Пошук персонажів</string>
+    <string name="alive">Живий</string>
+    <string name="dead">Мертвий</string>
+    <string name="unknown">Невідомо</string>
+    <string name="dark_mode">Темний режим</string>
+    <string name="type">Тип</string>
+    <string name="gender">Стать</string>
+    <string name="status">Статус</string>
+    <string name="species">Вид</string>
+    <string name="loading">Завантаження</string>
+    <string name="origin">Походження</string>
+    <string name="location">Розташування</string>
+</resources>

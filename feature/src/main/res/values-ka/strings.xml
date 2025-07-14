@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings">პარამეტრები</string>
+    <string name="filters">ფილტრები</string>
+    <string name="language">ენა</string>
+    <string name="share">გაზიარება</string>
+    <string name="rate_us">შეაფასეთ ჩვენ</string>
+    <string name="lang_english">ინგლისური</string>
+    <string name="lang_french">ფრანგული</string>
+    <string name="lang_russian">რუსული</string>
+    <string name="lang_vietnamese">ვიეტნამური</string>
+    <string name="lang_hindi">ჰინდი</string>
+    <string name="lang_german">გერმანული</string>
+    <string name="lang_indonesian">ინდონეზიური</string>
+    <string name="lang_portuguese">პორტუგალიური</string>
+    <string name="lang_chinese">ჩინური</string>
+    <string name="lang_spanish">ესპანური</string>
+    <string name="lang_azerbaijani">აზერბაიჯანული</string>
+    <string name="lang_bengali">ბენგალური</string>
+    <string name="lang_georgian">ქართული</string>
+    <string name="lang_khmer">ხმერული</string>
+    <string name="lang_thai">ტაილანდური</string>
+    <string name="lang_ukrainian">უკრაინული</string>
+    <string name="lang_uzbek">უზბეკური</string>
+    <string name="rick_and_morty">რიკი და მორტი</string>
+    <string name="search_characters">პერსონაჟების ძებნა</string>
+    <string name="alive">ცოცხალი</string>
+    <string name="dead">მკვდარი</string>
+    <string name="unknown">უცნობი</string>
+    <string name="dark_mode">მუქი რეჟიმი</string>
+    <string name="type">ტიპი</string>
+    <string name="gender">სქესი</string>
+    <string name="status">სტატუსი</string>
+    <string name="species">სახეობა</string>
+    <string name="loading">ჩატვირთვა</string>
+    <string name="origin">წარმოშობა</string>
+    <string name="location">ადგილმდებარეობა</string>
+</resources>

@@ -16,6 +16,7 @@ import com.test.main.domain.MainViewModel
 fun MainFeatureRoot(
     modifier: Modifier = Modifier,
     vm: MainViewModel = hiltViewModel(),
+    isDarkMode: Boolean,
     onSettingsClicked: () -> Unit,
     onCharacterClicked: (Int) -> Unit
 ) {
@@ -35,6 +36,7 @@ fun MainFeatureRoot(
         composable(MainScreenState.CHARACTERS) {
             CharactersFeatureRoot(
                 vm = vm,
+                isDarkMode = isDarkMode,
                 onSettingsClicked = {
                     onSettingsClicked()
                 },
@@ -47,6 +49,7 @@ fun MainFeatureRoot(
         composable(MainScreenState.FILTERS) {
             FiltersFeatureRoot(
                 vm = vm,
+                isDarkMode = isDarkMode,
                 onBack = {
                     navController.navigateUp()
                 },
