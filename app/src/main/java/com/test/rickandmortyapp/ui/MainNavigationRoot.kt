@@ -3,7 +3,6 @@ package com.test.rickandmortyapp.ui
 import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.LocalActivity
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut

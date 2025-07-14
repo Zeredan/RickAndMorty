@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "com.test.feature"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 24
@@ -41,6 +41,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
@@ -58,6 +59,7 @@ dependencies {
     implementation(libs.firebase.messaging)
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
 
     implementation("androidx.navigation:navigation-compose:2.8.5")
     implementation("com.google.dagger:hilt-android:2.51.1")
